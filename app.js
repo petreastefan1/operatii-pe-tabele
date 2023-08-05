@@ -10,11 +10,12 @@ let modelInpt = document.getElementById('model-inpt');
 
 let yearInpt = document.getElementById('year-inpt');
 
+let addBtn = document.getElementById('btn-add-car');
+
+// let removeBtn = document.getElementById('btn-remove-car');
 
 
 //functions
-
-
 
 function createRow(cars) {
 
@@ -57,9 +58,48 @@ function createRows(arr){
 	return all;
 }
 
-
 function attachRows(){
     containerCars.innerHTML=createRows(cars);
+
+}
+
+
+//todo:validator modle : ce: 1)-unicitare  2)-required 3)min-lenght sa fie 3
+
+
+function validateModel(model){
+
+
+   
+    if(findCarByModel(model)!==null){
+
+        return  false;
+    }
+
+    if(model.length<5){
+
+        return false;
+    }
+
+    return true;
+}
+
+
+//todo:find car by model
+
+function findCarByModel(model){
+
+    
+
+    for(let i=0;i<cars.length;i++){
+
+         if(cars[i].model==model){
+
+            return cars[i];
+         }
+    }
+
+    return null;
 }
 
 
@@ -67,4 +107,26 @@ function attachRows(){
 
 
 attachRows();
+
+addBtn.addEventListener("click",()=>{
+
+
+    let newCar = {
+        car: nameInpt.value,
+        model: modelInpt.value,
+        year: yearInpt.value
+    }
+    cars.push(newCar);
+
+
+    attachRows();
+    findCarByMode();
+    validateModel();
+
+})
+
+// removeBtn.addEventListener("click",()=>{
+
+//     cars.pop()
+// })
 
