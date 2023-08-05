@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <h1>Cars</h1>
+	<p><a class="button" id="btn-add-car">Add Car</a></p>
+    <section class="add-container">
+        <div class="car-box">
+        <label for="car">Car:</label>
+        <input type="textbox" name="car" id="name-inpt">
+        </div>
+        <div class="model-box">
+        <label for="model">Model:</label>
+        <input type="textbox" name="model" id="model-inpt">
+        </div>
+        <div class="year-box">
+        <label for="year">Year:</label>
+        <input type="textbox" name="year" id="year-inpt">
+        </div>
+    </section>
+
+
+    <main>
+        <table class="container">
+            <thead>
+                <tr>
+                    <th>Car</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody id="container-cars">
+                
+            </tbody>
+        </table>
+
+
+
+
+    </main>
+  
+    
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
