@@ -14,6 +14,8 @@ let addBtn = document.getElementById('btn-add-car');
 
 let removeBtn = document.getElementById('btn-remove-car');
 
+let saveBtnText = `<i class="fa-solid fa-floppy-disk"></i>`
+                
 
 //functions
 
@@ -32,7 +34,13 @@ function createRow(cars) {
         <button  class="btn-delete ${cars.company}">  
            <i class="fa-solid fa-trash  btn-delete ${cars.company}"></i>
         </button>
-    
+
+        <button  class="btn-save ${cars.company}">  
+        <i class="fa-solid fa-floppy-disk  btn-save ${cars.company}"></i>
+        </button>
+       
+
+        
     </td>
 </tr> 
     
@@ -209,6 +217,19 @@ function findCarByName(company){
 }  
 
 
+
+//findPositionCarByName
+
+function findPositionCarByName(company){
+    for(let i=0;i<cars.length;i++){
+        if(cars[i].company==company){
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 //todo:find car by model
 
 function findCarByModel(model){
@@ -302,9 +323,54 @@ addBtn.addEventListener("click",()=>{
 containerCars.addEventListener("click",(e)=>{
     let obj=e.target;
     let classes=obj.classList;
+
+    
     let name=classes[classes.length-1];
+    let car=findCarByName(name);
     if(classes.contains("btn-delete")){
         deleteCar(name);
         attachRows();
+    }else if(classes.contains("btn-edit")){
+        nameInpt.disabled=true;
+        nameInpt.value=car.company;
+        modelInpt.value=car.model;
+        yearInpt.value=car.year;
+
+
+    }else if(classes.contains("btn-save")){
+
+
+        nameInpt.disabled=true;
+
+        let savedCar={
+            company:nameInpt.value,
+            model:modelInpt.value,
+            year:yearInpt.value
+        }
+        
+
+        let pos=findPositionCarByName(name);
+
+        cars[pos].model= savedCar.model!=='' ? savedCar.model : cars[pos].model;
+        cars[pos].year= savedCar.year!=='' ? savedCar.year : cars[pos].year;
+        attachRows()
+
+
+
+
+
+
+
+
+
     }
+
+    
 });
+
+
+
+
+
+
+
